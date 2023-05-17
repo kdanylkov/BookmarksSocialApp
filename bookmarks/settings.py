@@ -109,11 +109,20 @@ AUTHENTICATION_BACKENDS = [
         'django.contrib.auth.backends.ModelBackend',
         'account.authentication.EmailAuthBackend',
         'social_core.backends.mailru.MRGOAuth2',
+        'social_core.backends.github.GithubOAuth2',
+        'social_core.backends.twitter.TwitterOAuth',
         ]
 
 SOCIAL_AUTH_MAILRU_KEY = '55b461afa6ee43aea1b38f3063d7c1e6'
 SOCIAL_AUTH_MAILRU_SECRET = 'f4702b4df3604b4eba227d7ddbc6684e'
 SOCIAL_AUTH_MAILRU_SCOPE = ['email']
+
+SOCIAL_AUTH_GITHUB_KEY = 'e0a6e898ff182456a574'
+SOCIAL_AUTH_GITHUB_SECRET = '5c69bd5fa4439bb0ec1a26ab75336b5518a4fe75'
+SOCIAL_AUTH_GITHUB_SCOPE = ['email']
+
+SOCIAL_AUTH_TWITTER_KEY = 'M4nvKlrWFP6KJMBC25of6OHSK'
+SOCIAL_AUTH_TWITTER_SECRET = '28yWjPuW5h5MAcPZbcj99kb9zdcL4z8xrKzeymZit1BDzeZgBf'
 
 
 # Internationalization

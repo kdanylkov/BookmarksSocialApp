@@ -35,6 +35,16 @@
                     Sign in with Mail.ru
                 </a>
             </li>
+            <li class="github">
+                <a href="{% url "social:begin" "github" %}">
+                    Sign in with GitHub
+                </a>
+            </li>
+            <li class="twitter">
+                <a href="{% url "social:begin" "twitter" %}">
+                    Sign in with Twitter
+                </a>
+            </li>
         </ul>
     </div>
 {% endblock %}
