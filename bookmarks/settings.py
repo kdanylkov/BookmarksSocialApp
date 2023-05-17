@@ -117,6 +117,19 @@ AUTHENTICATION_BACKENDS = [
         'social_core.backends.google.GoogleOAuth2',
         ]
 
+SOCIAL_AUTH_PIPELINE = [
+        'social_core.pipeline.social_auth.social_details',
+        'social_core.pipeline.social_auth.social_uid',
+        'social_core.pipeline.social_auth.auth_allowed',
+        'social_core.pipeline.social_auth.social_user',
+        'social_core.pipeline.user.get_username',
+        'social_core.pipeline.user.create_user',
+        'account.authentication.create_profile',
+        'social_core.pipeline.social_auth.associate_user',
+        'social_core.pipeline.social_auth.load_extra_data',
+        'social_core.pipeline.user.user_details',
+]
+
 SOCIAL_AUTH_MAILRU_KEY = '55b461afa6ee43aea1b38f3063d7c1e6'
 SOCIAL_AUTH_MAILRU_SECRET = env.str('SOCIAL_AUTH_MAILRU_SECRET')
 SOCIAL_AUTH_MAILRU_SCOPE = ['email']
@@ -127,6 +140,9 @@ SOCIAL_AUTH_GITHUB_SCOPE = ['email']
 
 SOCIAL_AUTH_TWITTER_KEY = 'sO3n1zeIVAYwvuenlqiLTPu8I'
 SOCIAL_AUTH_TWITTER_SECRET = env.str('SOCIAL_AUTH_TWITTER_SECRET')
+
+SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = '404043227596-1gsi61u8o1qed0d8oekjtl005otuogfn.apps.googleusercontent.com'
+SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = env.str('SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET')
 
 
 # Internationalization
