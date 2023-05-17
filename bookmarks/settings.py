@@ -25,19 +25,24 @@ SECRET_KEY = 'django-insecure-h$9awz+n!f=4hix&4+ucat46uc%o%^(9&3c*7obhwf#+0+7%96
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost', 'mysite.com']
 
 
 # Application definition
 
 INSTALLED_APPS = [
+    # Custom authentication
     'account.apps.AccountConfig',
+    # Django internal
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    # 3rd party
+    'social_django',
+    'django_extensions',
 ]
 
 MIDDLEWARE = [
@@ -103,7 +108,12 @@ AUTH_PASSWORD_VALIDATORS = [
 AUTHENTICATION_BACKENDS = [
         'django.contrib.auth.backends.ModelBackend',
         'account.authentication.EmailAuthBackend',
+        'social_core.backends.mailru.MRGOAuth2',
         ]
+
+SOCIAL_AUTH_MAILRU_KEY = '55b461afa6ee43aea1b38f3063d7c1e6'
+SOCIAL_AUTH_MAILRU_SECRET = 'f4702b4df3604b4eba227d7ddbc6684e'
+SOCIAL_AUTH_MAILRU_SCOPE = ['email']
 
 
 # Internationalization
