@@ -11,6 +11,10 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 
 from pathlib import Path
+from environs import Env
+
+env = Env()
+env.read_env()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -23,10 +27,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-h$9awz+n!f=4hix&4+ucat46uc%o%^(9&3c*7obhwf#+0+7%96'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = env.bool('DJANGO_DEBUG', default=False)
 
-ALLOWED_HOSTS = ['127.0.0.1', 'localhost', 'mysite.com']
-
+ALLOWED_HOSTS = env.list('DJANGO_ALLOWED_HOSTS')
 
 # Application definition
 
@@ -111,18 +114,19 @@ AUTHENTICATION_BACKENDS = [
         'social_core.backends.mailru.MRGOAuth2',
         'social_core.backends.github.GithubOAuth2',
         'social_core.backends.twitter.TwitterOAuth',
+        'social_core.backends.google.GoogleOAuth2',
         ]
 
 SOCIAL_AUTH_MAILRU_KEY = '55b461afa6ee43aea1b38f3063d7c1e6'
-SOCIAL_AUTH_MAILRU_SECRET = 'f4702b4df3604b4eba227d7ddbc6684e'
+SOCIAL_AUTH_MAILRU_SECRET = env.str('SOCIAL_AUTH_MAILRU_SECRET')
 SOCIAL_AUTH_MAILRU_SCOPE = ['email']
 
 SOCIAL_AUTH_GITHUB_KEY = 'e0a6e898ff182456a574'
-SOCIAL_AUTH_GITHUB_SECRET = '5c69bd5fa4439bb0ec1a26ab75336b5518a4fe75'
+SOCIAL_AUTH_GITHUB_SECRET = env.str('SOCIAL_AUTH_GITHUB_SECRET')
 SOCIAL_AUTH_GITHUB_SCOPE = ['email']
 
-SOCIAL_AUTH_TWITTER_KEY = 'M4nvKlrWFP6KJMBC25of6OHSK'
-SOCIAL_AUTH_TWITTER_SECRET = '28yWjPuW5h5MAcPZbcj99kb9zdcL4z8xrKzeymZit1BDzeZgBf'
+SOCIAL_AUTH_TWITTER_KEY = 'sO3n1zeIVAYwvuenlqiLTPu8I'
+SOCIAL_AUTH_TWITTER_SECRET = env.str('SOCIAL_AUTH_TWITTER_SECRET')
 
 
 # Internationalization
