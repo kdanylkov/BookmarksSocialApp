@@ -14,6 +14,7 @@ from .forms import (
         ProfileEditForm
         )
 from .models import Profile, Contact
+from actions.utils import create_action
 
 
 def user_login(request: HttpRequest) -> HttpResponse:
@@ -56,6 +57,7 @@ def register(request: HttpRequest) -> HttpResponse:
                     )
             new_user.save()
             Profile.objects.create(user=new_user)
+            create_action(new_user, 'has created an account')
             return render(request,
                           'account/register_done.html',
                           {'new_user': new_user})
@@ -123,6 +125,7 @@ def user_follow(request: HttpRequest):
                         user_from=request.user,
                         user_to=user
                         )
+                create_action(request.user, 'is following', user)
             else:
                 Contact.objects.filter(user_from=request.user,
                                        user_to=user).delete()
