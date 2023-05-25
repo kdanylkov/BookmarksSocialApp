@@ -4,6 +4,11 @@
 
 {% block content %}
     <h1>Images bookmarked</h1>
+    <p>
+        <a href="{% url 'images:ranking' %}">
+            Go to most viewed
+        </a>
+    </p>
     <div id="image-list">
         {% include "images/image/list_images.html" %}
     </div>
